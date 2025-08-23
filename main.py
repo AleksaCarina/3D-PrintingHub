@@ -45,3 +45,20 @@ async def read_root(request: Request) -> HTMLResponse:
         HTMLResponse: Rendered landing page HTML.
     """
     return templates.TemplateResponse("main.html", {"request": request})
+
+@app.get("/login", response_class=HTMLResponse)
+async def read_root(request: Request) -> HTMLResponse:
+    """Serve the landing page.
+
+    When a user visits the root URL, this endpoint renders the
+    ``index.html`` template. The request object is passed into the
+    template context as required by FastAPI/Jinja2.
+
+    Args:
+        request: The current request instance.
+
+    Returns:
+        HTMLResponse: Rendered landing page HTML.
+    """
+    return templates.TemplateResponse("login.html", {"request": request})
+
