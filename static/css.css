@@ -5,22 +5,58 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  line-height: 1.6;
+  position: relative;  /* potrebna za pseudo-element */
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;          /* fiksna pozicija da pokriva ekran */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('printer.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(6px);        /* zamagljena pozadina */
+  z-index: 0;               /* ispod svega */
+}
+main, header, .auth-buttons, nav {
+  position: relative;
+  z-index: 1;  /* stavlja elemente iznad pozadine */
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to right, #08b7d2, #1407d6) 1;
   padding: 15px 20px;
-  background: #140123a2;
+  background: rgba(40, 38, 38, 0.7); /* last value 0.7 = 70% opacity */
   color: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: bold;
+.TitleHeader {
+  display: flex;              /* postavlja decu (img i logoTitle) u red */    
+  align-items: center;        /* vertikalno centriranje */
+  gap: 10px;  
+}  
+.nameTitle{
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
+}
+.imgTitle{
+  border-radius: 5px;
 }
 
 nav ul {
@@ -47,7 +83,7 @@ nav ul li a.active {
 
 .auth-buttons button {
   margin-left: 10px;
-  padding: 5px 12px;
+  padding: 10px 17px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -63,6 +99,7 @@ nav ul li a.active {
 .about {
   padding: 40px;
   text-align: center;
+  color: white;
 }
 
 /* Modals */
