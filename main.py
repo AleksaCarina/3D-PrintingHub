@@ -44,4 +44,4 @@ async def read_root(request: Request) -> HTMLResponse:
     Returns:
         HTMLResponse: Rendered landing page HTML.
     """
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("main.html", {"request": request})
