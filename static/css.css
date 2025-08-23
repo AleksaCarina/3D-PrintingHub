@@ -35,6 +35,7 @@ header {
   align-items: center;
   border-bottom: 3px solid;
   border-image: linear-gradient(to right, #08b7d2, #1407d6) 1;
+  flex-wrap: wrap;
   padding: 15px 20px;
   background: rgba(40, 38, 38, 0.7); /* last value 0.7 = 70% opacity */
   color: #ffffff;
