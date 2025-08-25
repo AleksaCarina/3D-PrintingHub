@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Hub</title>
+  <link rel="stylesheet" href="/static/css.css">
+  <link rel="icon" type="image/png" href="/app/static/logo.png">
+</head>
+<body>
+  <header>
+    <div class="TitleHeader">
+      <img class="imgTitle" src="/static/logo.png" alt="3D Hub" style="height:40px; vertical-align:middle;">
+      <div class="nameTitle">3D Hub</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{ request.url_for('home') }}">Home</a></li>
+        <li><a href="#" class="active">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <button id="loginBtn">Login</button>
+      <button id="registerBtn">Register</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="about">
+      <h1>About Us</h1>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </p>
+    </section>
+  </main>
+
+  <!-- Login Sidebar -->
+  <div id="loginSidebar" class="sidebar">
+    <span id="closeSidebar">&times;</span>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <a href="/forgot-password" class="forgot">Forgot Password?</a>
+    </form>
+  </div>
+
+  <script src="/static/js.js?v=1.0.1"></script>
+</body>
+</html>
