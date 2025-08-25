@@ -18,7 +18,7 @@ steps:
         '--platform','managed',
         '--allow-unauthenticated',
         '--set-env-vars',
-        'DATABASE_URL=$_DATABASE_URL,JWT_SECRET_KEY=$_JWT_SECRET_KEY,ACCESS_TOKEN_EXPIRE_MINUTES=$_ACCESS_TOKEN_EXPIRE_MINUTES'
+        'DATABASE_URL=sqlite:////tmp/app.db,JWT_SECRET_KEY=$_JWT_SECRET_KEY,ACCESS_TOKEN_EXPIRE_MINUTES=$_ACCESS_TOKEN_EXPIRE_MINUTES'
       ]
 
 images:
@@ -28,8 +28,7 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 substitutions:
-  _SERVICE: 'printinghub-backend'        # Cloud Run service name
-  _REGION: 'europe-west1'                # pick your region
-  _DATABASE_URL: 'sqlite:////app/app.db' # or postgres url when ready
-  _JWT_SECRET_KEY: 'replace_me'          # set to a strong secret (or use Secret Manager)
+  _SERVICE: 'printinghub-backend'
+  _REGION: 'europe-west1'
+  _JWT_SECRET_KEY: 'replace_me_with_strong_secret'
   _ACCESS_TOKEN_EXPIRE_MINUTES: '60'
