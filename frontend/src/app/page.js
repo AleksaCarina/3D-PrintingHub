@@ -1,0 +1,56 @@
+// app/page.js
+
+"use client";
+import "./globals.css";
+import { useState } from "react";
+
+export default function HomePage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <div>
+      <header>
+        <div className="TitleHeader">
+          <img
+            className="imgTitle"
+            src="/logo.png"
+            alt="3D Hub"
+            style={{ height: "40px", verticalAlign: "middle" }}
+          />
+          <div className="nameTitle">3D Hub</div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#" className="active">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div className="auth-buttons">
+          <button onClick={() => setSidebarOpen(true)}>Login</button>
+          <button>Register</button>
+        </div>
+      </header>
+
+      <main>
+        <section className="about">
+          <h1>About Us</h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </section>
+      </main>
+
+      {sidebarOpen && (
+        <div className="sidebar">
+          <span onClick={() => setSidebarOpen(false)}>&times;</span>
+          <h2>Login</h2>
+          <form>
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+}
