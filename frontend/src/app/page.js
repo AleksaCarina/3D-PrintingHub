@@ -3,6 +3,9 @@
 "use client";
 import "./globals.css";
 import { useState } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+
 
 export default function HomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -38,6 +41,14 @@ export default function HomePage() {
           <h1>About Us</h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </section>
+              {/* replace <img .../> with <Image .../> */}
+      <Image src="/logo.png" alt="Logo" width={256} height={64} priority />
+
+      {/* replace <a href="/">...</a> with <Link href="/">...</Link> */}
+      <p>
+        Go <Link href="/">home</Link>
+      </p>
+
       </main>
 
       {sidebarOpen && (

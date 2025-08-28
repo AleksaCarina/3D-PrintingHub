@@ -1,0 +1,43 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8   # faster builds; optional
+
+substitutions:
+  _REGION: europe-central2     # pick your Cloud Run/AR region
+  _SERVICE: printinghub        # Cloud Run service name
+  _AR_REPO: printinghub        # Artifact Registry repo name
+  _IMAGE: "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE}"
+
+steps:
+  # Build the image (tags: commit and latest)
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "$_IMAGE:$SHORT_SHA", "-t", "$_IMAGE:latest", "-f", "Dockerfile", "."]
+
+  # Push both tags
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "$_IMAGE:$SHORT_SHA"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "$_IMAGE:latest"]
+
+  # Deploy to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - $_SERVICE
+      - --image=$_IMAGE:$SHORT_SHA
+      - --region=$_REGION
+      - --platform=managed
+      - --allow-unauthenticated
+      - --port=8080
+      - --cpu=1
+      - --memory=1Gi
+      - --max-instances=4
+      - --min-instances=0
+      # If you want env vars at deploy time, uncomment:
+      # - --set-env-vars=API_APP=app.main:app,NODE_ENV=production
+
+images:
+  - "$_IMAGE:$SHORT_SHA"
+  - "$_IMAGE:latest"
